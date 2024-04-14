@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class OptionsManager : MonoBehaviour
 {
     public TextMeshProUGUI daltonismButtonText;
-    public Material colorblindMaterial;
 
     private int currentOptionIndex = 0;
     private string[] daltonismOptions = { "Desativado", "Protanopia", "Deuteranopia", "Tritanopia" };
@@ -24,6 +23,9 @@ public class OptionsManager : MonoBehaviour
 
         switch (currentOptionIndex)
         {
+            case 0:
+                ApplyNormal();
+                break;
             case 1:
                 ApplyProtanopia();
                 break;
@@ -47,33 +49,17 @@ public class OptionsManager : MonoBehaviour
     
     public void ApplyProtanopia()
     {
-        if (colorblindMaterial != null)
-        {
-            colorblindMaterial.shader = Shader.Find("Custom/Colorblind/Protanopia");
-        }
     }
 
     public void ApplyDeuteranopia()
     {
-        if (colorblindMaterial != null)
-        {
-            colorblindMaterial.shader = Shader.Find("Custom/Colorblind/Deuteranopia");
-        }
     }
 
     public void ApplyTritanopia()
     {
-        if (colorblindMaterial != null)
-        {
-            colorblindMaterial.shader = Shader.Find("Custom/Colorblind/Tritanopia");
-        }
     }
 
     public void ApplyNormal()
     {
-        if (colorblindMaterial != null)
-        {
-            colorblindMaterial.shader = Shader.Find("Custom/Colorblind/Tritanopia");
-        }
     }
 }
