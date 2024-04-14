@@ -1,0 +1,49 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Hover : Singleton<Hover>
+{
+    private SpriteRenderer spriteRenderer;
+    
+    public SpriteRenderer SpriteRenderer
+    {
+        get
+        {
+            return spriteRenderer;
+        }
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.enabled = false;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        FollowMouse();
+    }
+
+    private void FollowMouse()
+    {
+        if (spriteRenderer.enabled)
+        {
+            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 25);
+        }
+    }
+
+    public void Activate(Sprite sprite)
+    {
+        this.spriteRenderer.sprite = sprite;
+        spriteRenderer.enabled = true;
+    }
+
+    public void Deactivate()
+    {
+        spriteRenderer.enabled = false;
+        GameManager.Instance.ChoosedDemon = null;
+    }
+}

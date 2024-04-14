@@ -11,6 +11,8 @@ public class LevelManager : Singleton<LevelManager>
 
     public Dictionary<Point, TileScript> Tiles;
 
+    [SerializeField] private Transform map;
+
     private float TileSize => tilePrefabs[0].GetComponent<SpriteRenderer>().sprite.bounds.size.x;
 
     // Start is called before the first frame update
@@ -126,9 +128,7 @@ public class LevelManager : Singleton<LevelManager>
 
         TileScript newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<TileScript>();
         
-        newTile.Setup(new Point(x, y), new Vector3(TileSize * x, TileSize * -y, 3));
-        
-        Tiles.Add(new Point(x, y), newTile);
+        newTile.Setup(new Point(x, y), new Vector3(TileSize * x, TileSize * -y, 3), map);
     }
 
     private string[] ReadLevelText()
