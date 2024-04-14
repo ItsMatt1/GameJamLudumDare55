@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DemonButton : MonoBehaviour
+public class DemonButton : Singleton<DemonButton>
 {
     [SerializeField] private GameObject demonPrefab;
     [SerializeField] private Sprite sprite;
@@ -22,4 +22,16 @@ public class DemonButton : MonoBehaviour
             return demonPrefab;
         }
     }
+
+    [SerializeField]
+    private int manaCost;
+
+    public int ManaCost
+    {
+        get
+        {
+            return manaCost;
+        }
+    }
+    
 }
