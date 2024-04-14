@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("GameScene1"); // Load the game scene
+        SceneManager.LoadScene("CleyScene"); // Load the game scene
     }
 
     public void OpenOptions()
