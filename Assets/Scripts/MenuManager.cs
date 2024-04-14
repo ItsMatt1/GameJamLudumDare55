@@ -33,7 +33,7 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("OptionsScene"); // Load the options scene
     }
 
-    public void SelectedMenu()
+    public static void SelectedMenu()
     {
         AudioManager.instance.Play("SelectMenu");
     }
