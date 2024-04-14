@@ -20,6 +20,10 @@ public class MenuManager : MonoBehaviour
         Debug.Log("Saiu");
         Application.Quit(); // Quit the application
     }
-    
+
+    public void BackButton()
+    {
+        SceneManager.LoadScene("MenuScene");
+    }
     
 }
