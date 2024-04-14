@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
     public DemonButton ChoosedDemon { get; set; }
 
     private int mana;
+    private int manaBefore;
 
     [SerializeField]
     private Text manaTxt;
@@ -28,7 +29,7 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     void Start()
     {
-        Mana = 80;
+        Mana = 100;
     }
 
     // Update is called once per frame
@@ -39,15 +40,28 @@ public class GameManager : Singleton<GameManager>
 
     public void ChooseDemon(DemonButton demonBtn)
     {
-        if (Hover.Instance.SpriteRenderer.enabled && ChoosedDemon == demonBtn)
+        if (Hover.Instance.SpriteRenderer.enabled)
         {
-            Hover.Instance.Deactivate();
+            if (ChoosedDemon == demonBtn)
+            {
+                Hover.Instance.Deactivate();
+                Mana += demonBtn.ManaCost;
+            }
+            else
+            {
+                Mana += ChoosedDemon.ManaCost;
+                this.ChoosedDemon = demonBtn;
+                Hover.Instance.Activate(demonBtn.Sprite);
+                Mana -= demonBtn.ManaCost;
+            }
         }
         else
         {
             this.ChoosedDemon = demonBtn;
             Hover.Instance.Activate(demonBtn.Sprite);
+            Mana -= demonBtn.ManaCost;
         }
+        manaBefore = demonBtn.ManaCost;
     }
 
     public void CastDemon()
